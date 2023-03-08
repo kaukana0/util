@@ -23,3 +23,51 @@ export function getURLParameterValue (parameter) {
 		return results[1]
 	}
 }
+
+/*
+o1
+  a
+    b
+
+o2
+  a
+    c
+
+expected result
+	a
+		b
+		c
+
+test:
+const a= {a:{b:{bla:"b"}}}
+const b= {a:{c:{bla:"c"}}}
+console.log(mergeObjects(a,b))
+
+*/
+export function mergeObjects(a, b) {
+	let retVal = structuredClone(a)
+
+	function iter(b, retVal) {
+		for (const prop in b) {
+			if(retVal[prop]) {
+				if(typeof b[prop] === "object") {
+					iter(b[prop],retVal[prop])
+				} else {
+					// cont
+				}
+			} else {
+				if(typeof b[prop] === "object") {
+					retVal[prop] = structuredClone( b[prop] )
+					iter(b[prop],retVal[prop])
+				} else {
+					retVal[prop] = b[prop]
+					iter(b[prop],retVal[prop])
+				}
+			}
+		}
+	}
+
+	iter(b, retVal)
+
+	return retVal
+}
