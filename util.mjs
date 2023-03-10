@@ -52,7 +52,7 @@ export function mergeObjects(a, b) {
 			if(Array.isArray(val)) {
 				if(retVal[key]) {
 					if(Array.isArray(retVal[key])) {
-						retVal[key] = val
+						retVal[key] = Array.from(val)
 						// or this? retVal[key] = retVal[key].concat(val)
 					} else {
 						// do nothing
@@ -64,7 +64,7 @@ export function mergeObjects(a, b) {
 			} else {
 				if(retVal[key]) {
 					if(typeof val === "object") {
-						iter(val, retVal[key])
+						retVal[key] = iter(val, b[key])
 					}	else {
 						console.warn("util: ?")
 					}
@@ -73,9 +73,8 @@ export function mergeObjects(a, b) {
 				}
 			}
 		}
+		return retVal
 	}
 
-	iter(retVal, b)
-
-	return retVal
+	return iter(retVal, b)
 }
