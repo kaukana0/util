@@ -64,7 +64,7 @@ export function mergeObjects(a, b) {
 			} else {
 				if(retVal[key]) {
 					if(typeof val === "object") {
-						retVal[key] = iter(val, b[key])
+						retVal[key] = iter(val, {...b[key], ...retVal[key]})
 					}	else {
 						console.warn("util: ?")
 					}
