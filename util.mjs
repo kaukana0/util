@@ -52,8 +52,25 @@ export function mergeObjects(a, b) {
 			if(Array.isArray(val)) {
 				if(retVal[key]) {
 					if(Array.isArray(retVal[key])) {
-						retVal[key] = Array.from(val)
-						// or this? retVal[key] = retVal[key].concat(val)
+
+						const a = retVal[key]
+						const b = Array.from(val)
+						for(let ib=0;ib<b.length;ib++) {
+							const tb = b[ib]
+							let found=false
+							for(let ia=0;ia<a.length;ia++) {
+								const ta = a[ia]
+								if(Object.keys(ta)[0] === Object.keys(tb)[0]) {
+									a[ia] = b[ib]
+									found=true
+									break
+								}
+							}
+							if(!found) {
+								a.push(tb)
+							}
+						}
+
 					} else {
 						// do nothing
 						console.warn("util: prop exists and is not an array")
@@ -66,7 +83,7 @@ export function mergeObjects(a, b) {
 					if(typeof val === "object") {
 						retVal[key] = iter(val, {...b[key], ...retVal[key]})
 					}	else {
-						console.warn("util: ?")
+						console.warn("util mergeObjects: ?")
 					}
 				} else {
 					retVal[key] = structuredClone(val)
