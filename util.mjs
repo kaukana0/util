@@ -67,7 +67,7 @@ export function mergeObjects(a, b) {
 								}
 							}
 							if(!found) {
-								a.push(tb)
+								a.unshift(tb)
 							}
 						}
 
