@@ -2,7 +2,12 @@ export function replaceEuInRawData(arrayBuffer) {
 	var dataView = new DataView(arrayBuffer)
 	var decoder = new TextDecoder('utf8')
 	try {
-		var obj = JSON.parse(decoder.decode(dataView).replaceAll("EU27_2020", "EU").replaceAll("EA19", "EA") )
+		var obj = JSON.parse(
+			decoder.decode(dataView)
+			.replaceAll("EU27_2020", "EU")
+			.replaceAll("EA19", "EA")
+			.replaceAll("European Union - 27 countries (from 2020)", "European Union")
+			)
 		return obj
 	} catch(e) {
 		console.error("main: invalid (json) or no data. native error follows.\n\n", e)
