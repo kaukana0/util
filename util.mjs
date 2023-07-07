@@ -7,6 +7,7 @@ export function replaceEuInRawData(arrayBuffer) {
 			.replaceAll("EU27_2020", "EU")
 			.replaceAll("EA19", "EA")
 			.replaceAll("European Union - 27 countries (from 2020)", "European Union")
+			.replaceAll("Germany (until 1990 former territory of the FRG)", "Germany")
 			)
 		return obj
 	} catch(e) {
