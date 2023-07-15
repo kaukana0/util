@@ -89,7 +89,7 @@ export function mergeObjects(a, b) {
 					if(typeof val === "object") {
 						retVal[key] = iter(val, {...b[key], ...retVal[key]})
 					}	else {
-						console.warn("util mergeObjects: ?")
+						console.error("util mergeObjects: Can't merge given YAML")
 					}
 				} else {
 					retVal[key] = structuredClone(val)
