@@ -101,3 +101,13 @@ export function mergeObjects(a, b) {
 
 	return iter(retVal, b)
 }
+
+
+// WTF...
+export function reverseMapOrder(m) {
+	const retVal = new Map()
+	for(let [k] of Array.from(m).reverse()) {
+		retVal.set(k,m.get(k))
+	}
+	return retVal
+}
