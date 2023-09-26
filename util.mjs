@@ -111,3 +111,13 @@ export function reverseMapOrder(m) {
 	}
 	return retVal
 }
+
+
+export function isReachable(url, cb) {
+	fetch(url, {mode: 'no-cors'}).then(r=>{
+		cb(true)
+	})
+	.catch(e=>{
+		cb(false)
+	})
+}
