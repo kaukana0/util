@@ -121,3 +121,12 @@ export function isReachable(url, cb) {
 		cb(false)
 	})
 }
+
+export function getURLFromOGTag() {
+	let retVal = ""
+	const el = document.querySelector("meta[property='og:url']")
+	if(el) {
+		return el.getAttribute("content")
+	}
+	return retVal
+}
